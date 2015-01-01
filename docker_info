@@ -1,0 +1,115 @@
+Docker- Purpose:
+	-develop/ship/run application
+	-separates apps from infrastructure
+	- deploy faster/ cycles of writing & running code decreases also
+
+Docker- How
+	-virtualization platfrom & workflows & tooling that help manage and deploy application
+
+Docker- What
+	-run apps in isolated containers
+	-can run many containers on a host
+	-containers are lightweight thus no extra load to hypervisor
+		-hypervisor: software, firmware, hardware that creates and runs virtual machines
+		-host machine: computer on which a hypervisor is running one  or more virtual machines
+		-guest machine: where the hypervisor presents to the guest machine a virtual opening platform, and manages the execution of the guest operating systems.
+
+-Docker- Containers
+	-contains tooling and platform which can help with:
+		--app into docker
+		--distributing and shipping those containers to teams for development
+		--deploying apps to prodution environment ie data center or cloud. 
+
+
+-Docker - Use case:
+	-allows devl. to work on containers before integration and deployment
+	-write local code --> put into test envirn-->deploy
+
+Docker -Components: 
+	-open source container virtualization platform
+	-Docker hub: platform for sharing and managing Docker containers
+
+
+Docker-Architecture:
+	-client/server 
+	-Docker client talks to the Docker daemon (lifts, builds, runs, distributes docker containers)
+	-Docker client and daemon can run on the same system
+	-Docker client and daemon communicate via sockets or RESTful API
+
+Docker daemon:
+	- runs on a host machine; user doesn't interact with the daemon
+
+Docker client:
+	-primary UI to Docker.  It accepts commands from the user and communicates with the Docker daemon
+
+Inside Docker:
+	-Docker images,
+	-Docker registries,
+	Docker containers
+
+
+Docker images:
+	-read only template;
+	-images are used to create Docker containers
+	-Create, update, download docker images
+	**are the BUILD compoenent of docker
+
+Docker registries:
+	-hold images
+	-public/private stores upload or download images
+	-public Docker registry is called DOCKER HUB (provides existing images for use)
+	-you can create an image or use someone else's in the docker hub. 
+	**Docker registry are distribution componenet of docker
+
+Docker containers:
+	-similar to directory
+	- holds what's needed for an app to run
+	-Each container is created from a docker image
+	- containers can be run, started, stopped, moved, and deleted.
+	-each container is isolated and secure app platform
+	**run componenet of docker
+
+Docker- main idea:
+	-build docker images to hold app
+	-create docker containers from those docker images to run app
+	-share docker images via docker hub or own registry
+
+How does Docker image work:
+	-images contain layers. Layers are combined via union file system into a single image. 
+	- Union file systems allow files and directories of sep. file systems (branches), to be transparently overlaid ==> single coherent file system. 
+
+Relationship between images and speed:
+	- Change of a Docker image, ie update an app to a new version, a new layer gets built.  The layer is added or updated.  There is NO NEED to distribute a whole new image. 
+
+	virtual machines: have to replace the whole new image or entirely rebuild.  Images avoid that.
+
+Base images:
+	-ubuntu or fedora or personal
+
+Building images from Base image are based on instructions:
+	- run command
+	-add file or directory
+	-create env. variable
+	- run process when launching container FROM image
+
+	- These 4 instructions are stored in Dockerfile, a file. 
+	-Request image--> Docker executes the Dockerfile--> image is built--> final image is returned
+
+Docker registry:
+	- store for docker images
+	-Build docker image--> push public registry aka Docker Hub or your own registry running behind a firewall
+
+	-Another way: use the docker client to pull down images and build containers for them
+
+	-Docker hub: provides public  + private storage for images
+
+How does Container work? 
+	- Container contains: OS, user-added files, meta-data.  
+	-Each container is built from an image
+	-Image tells Docker waht the container holds (aka image talks to the Docker), what process to run when the container is launched, and a variety of other config. data. 
+	-Image is read-only. 
+	**- When dockers runs a container from an image, it adds a read-write layer on top of the image (via union file systems)
+	-
+
+
+

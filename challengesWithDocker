@@ -1,0 +1,54 @@
+Hopefully some helpful documentation if someone is doing the tutorial (link below) with Docker:
+
+	Docker site node js example hello world: 
+		https://docs.docker.com/examples/nodejs_web_app/#run-the-image
+
+		Download: http://boot2docker.io/ 
+
+Initial problems with docker: 
+	FATA[0000] Post http:///var/run/docker.sock/v1.16/containers/create: dial unix /var/run/docker.sock: no such file or directory. Are you trying to connect to a TLS-enabled daemon without TLS? 
+
+BREAK IT DOWN, HOMIE-G: What is TLS?
+	Transport Layer Security (TLS) is a protocol that ensures privacy between communicating applications and their users on the Internet. When a server and client communicate, TLS ensures that no third party may eavesdrop or tamper with any message. TLS is the successor to the Secure Sockets Layer (SSL).
+		->source: http://en.wikipedia.org/wiki/Transport_Layer_Security
+
+    Further explanation ov HTTPS vs TLS. vs SSL are here:
+		http://security.stackexchange.com/questions/5126/whats-the-difference-between-ssl-tls-and-https
+
+  may be I need a TLS ?!!
+
+  Why YES, I DO, I DO, I DO OOOOOO...
+		https://docs.docker.com/articles/certificates/
+			->above link wouldn't work, I have a mac: 
+			Warning: These TLS commands will only generate a working set of certificates on Linux. The version of OpenSSL in Mac OS X is incompatible with the type of certificate Docker requires.
+
+		http://sheerun.net/2014/05/17/remote-access-to-docker-with-tls/ 
+			->Didn't use this link, but may be it might help someone 
+
+		https://github.com/boot2docker/boot2docker/blob/master/README.md
+
+			-->by doing on the commandline after $: 
+				bash-3.2$ boot2docker shellinit
+
+				--> above link and command fixed the problem by setting the DOCKER_HOST envir.
+
+		
+		This command failed for me: 
+			 curl -i localhost:49160
+		
+		This TOTALLY FIXED MY PROBLEM: 
+
+			http://stackoverflow.com/questions/25144288/docker-container-with-node-and-express-on-mac-not-showing-in-browser
+
+			use on commandline:
+			bash-3.2$ curl -i "$(boot2docker ip):49160"
+
+		Curl manual: what does -i and -s mean?:
+			http://curl.haxx.se/docs/manpage.html
+
+		A good read about Docker:
+			http://www.hiddentao.com/archives/2013/12/26/automated-deployment-with-docker-lessons-learnt/
+
+		If you want to remove untagged images:
+			http://jimhoskins.com/2013/07/27/remove-untagged-docker-images.html
+
